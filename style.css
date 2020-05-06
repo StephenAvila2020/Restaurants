@@ -7,7 +7,14 @@
     display: inline-block;
     flex-direction: column;
     background-color: honeydew;
+    margin: 2em;
+    padding: 1em;
   }
   body{
       background-color:teal;
+  }
+
+  .places {
+      justify-content: center;
+      text-align: center;
   }
