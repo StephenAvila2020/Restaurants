@@ -1,75 +1,26 @@
+import apiManagerObject from "./apiManager.js"
+import printAllRestaurants from "./domPrinter.js"
+import searchEvent from "./eventListeners.js"
 
-fetch(`http://localhost:8088/restaurants`)
-    .then(restaurants => restaurants.json())
-    .then(parsedRestaurants => {
-        console.log(parsedRestaurants)
-        // clears out the container
-        document.querySelector(".restaurantList").innerHTML = "";
-        // for loop and print to dom
+// Print all of the restaurants
+apiManagerObject.getAllRestaurantsFromAPI()
+  .then((parsedRestaurants) => {
+    printAllRestaurants(parsedRestaurants);
+  });
 
+// Add a click event listener to the search button
+document
+  .querySelector("#restaurant-search-btn")
+  .addEventListener("click", searchEvent);
 
-        parsedRestaurants.forEach(restaurantObject => {
-            const htmlString = `<div class="card">
-            <div><a href="${restaurantObject.restaurant.url}">${restaurantObject.restaurant.name}</a></div>
-            <div>Address: ${restaurantObject.restaurant.location.address}</div>
-            <div>Rating: ${restaurantObject.restaurant.user_rating.aggregate_rating}</div>
-            <div>Average Cost for Two:$${restaurantObject.restaurant.average_cost_for_two}</div>
-            <button><a href="${restaurantObject.restaurant.menu_url}">View Menu</a></button></div>
-            `
-            document.querySelector(".restaurantList").innerHTML += htmlString
-        })
-
-
-    })
-
-document.querySelector("#restaurantSearch").addEventListener("click", () => {
-    console.log("You clicked the search button!")
-    //grab what the user put in the search bar
-    const searchTerm = document.querySelector("#RestaurantName").value;
-    console.log(searchTerm, "this is what the user typed in");
-    // this code only runs when user clicks the button
-    // plug the search term into fetch call
-    //parse what comes back from fetch call
-    // print my data to the dom from the api
-    fetch(`http://localhost:8088/restaurants?q=${searchTerm}`)
-        .then(restaurants => restaurants.json())
-        .then(parsedRestaurants => {
-            console.log(parsedRestaurants, "this is the restaurant you search for")
-            // clears out the container
-            document.querySelector(".restaurantList").innerHTML = "";
-            // for loop and print to dom
-
-
-            parsedRestaurants.forEach(restaurantObject => {
-                if (restaurantObject.restaurant.name.toLowerCase().includes(searchTerm.toLowerCase())) {
-                    const htmlString = `<div class="card">
-                    <div><a href="${restaurantObject.restaurant.url}">${restaurantObject.restaurant.name}</a></div>
-                    <div>Address: ${restaurantObject.restaurant.location.address}</div>
-                    <div>Rating: ${restaurantObject.restaurant.user_rating.aggregate_rating}</div>
-                    <div>Average Cost for Two:$${restaurantObject.restaurant.average_cost_for_two}</div>
-                    <button><a href="${restaurantObject.restaurant.menu_url}">View Menu</a></button></div>
-                    `
-                        document.querySelector(".restaurantList").innerHTML += htmlString
-                }
-            })
-
-
-        })
-
-})
-
-// in the uppper part you see the includes string working with the lower case inside of an if statement
-
-
-// Stretch goal two
-// document.querySelector("#RestaurantName").addEventListener("keyup", function (event) {
-//     if (event.KeyCode === `Enter`){
-//         document.querySelector(".restaurantList").innerHTML = ""
-//     }
-//     const restName = document.querySelector("#RestaurantName").value;
-//     restaurantNames(restName);
-//     console.log(restName, "hello");
-// })
+  // Add a keypress event to the search input to check for an enter key
+document
+  .querySelector("#restaurant-search-input")
+  .addEventListener("keypress", function (e) {
+    if (e.keyCode === 13) {
+      searchEvent();
+    }
+  });
 
 //     Instructions for step 1 of today's project. You should work on this individually, but you can ask for help from teammates or instructors and look at chapters/ example code
 // Create a new project using the basicProj function. Inside your project, create a subdirectory called api and a json file named restaurants.json

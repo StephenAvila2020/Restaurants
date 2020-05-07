@@ -1,20 +1,26 @@
-.card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 300px;
-    justify-content: center;
-    text-align: center;
-    font-family: arial;
-    display: inline-block;
-    flex-direction: column;
-    background-color: honeydew;
-    margin: 2em;
-    padding: 1em;
-  }
-  body{
-      background-color:teal;
-  }
+#restaurant-container{
+    border: 1px solid gray;
+    width: 80vw;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
 
-  .places {
-      justify-content: center;
-      text-align: center;
-  }
+.restaurant-card{
+    border: 1px solid gray;
+    margin: 1em;
+    width: 20vw;
+    text-align: center;
+}
+
+.search-container{
+    height: 7vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-container input, .search-container button {
+    height: 2em;
+    margin: 1em;
+}
