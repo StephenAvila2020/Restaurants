@@ -1,21 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport content=width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="style.css" />
-    <title>Document</title>
-  </head>
-  <body>
-    <section class="search-container">
-      <input type="text" id="restaurant-search-input">
-      <button id="restaurant-search-btn">Search For Restaurants</button>
-    </section>
-    <section id="restaurant-container">
 
-    </section>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport content=width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Document</title>
+</head>
 
-    <script type="module" src="script.js"></script>
-  </body>
+<body>
+  <!-- build a form -->
+  <section>
+    <form>
+      <input type="text" placeholder="Restaurant Name" id="restaurant-name">
+      <input type="text" placeholder="Restaurant Website" id="restaurant-url">
+      <input type="text" placeholder="Restaurant Menu URL" id="restaurant-menu-url">
+      <input type="text" placeholder="Restaurant Rating" id="restaurant-rating">
+      <input type="text" placeholder="Restaurant Average Cost per 2" id="restaurant-cost">
+      <input type="text" placeholder="Restaurant Address" id="restaurant-address">
+    </form>
+    <button id="add-restaurant">Submit</button>
+  </section>
+  <section class="search-container">
+    <input type="text" id="restaurant-search-input">
+    <button id="restaurant-search-btn">Search For Restaurants</button>
+  </section>
+  <section id="restaurant-container">
+
+  </section>
+
+  <script type="module" src="script.js"></script>
+</body>
+
 </html>

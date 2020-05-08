@@ -58,3 +58,42 @@ document
 // Refactor your search bar so that the user can press the "Enter" key and see the same results as if they hit the search button.
 // If you get done with all this, we have additional stretch goals for you-- 
 
+//Add event listener on submit button for restaurant form
+// when the button is clicked logg all the values the user typed into the console
+
+document.querySelector("#add-restaurant").addEventListener("click", function () {
+  const restname = document.querySelector("#restaurant-name").value;
+  const resturl = document.querySelector("#restaurant-url").value;
+  const restmenu = document.querySelector("#restaurant-menu-url").value;
+  const restcost = document.querySelector("#restaurant-cost").value;
+  const restrating = document.querySelector("#restaurant-rating").value;
+  const restaddress = document.querySelector("#restaurant-address").value;
+
+  console.log(restname,resturl,restmenu,restcost,restrating,restaddress)
+
+const restaurantObject = {
+  url: resturl,
+  menuURL: restmenu,
+  name: restname,
+  averageUserRating: restrating,
+  averageCostPerTwo: restcost,
+  address: restaddress,
+}
+ 
+
+ fetch("http://localhost:8088/restaurants", { // Replace "url" with your API's URL
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify(restaurantObject)
+}).then(() => {
+  document.querySelector("#restaurant-container").innerHTML = ""
+  apiManagerObject.getAllRestaurantsFromAPI()
+  .then((parsedRestaurants) => {
+    printAllRestaurants(parsedRestaurants);
+  });
+})
+
+console.log(restaurantObject)
+}) 
